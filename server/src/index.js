@@ -1,10 +1,12 @@
 import 'dotenv/config';
 import './config/envDefaults.js';
 import app from './app.js';
+import { validateProductionEnv } from './config/productionEnv.js';
 import { connectDatabase, disconnectDatabase } from './config/database.js';
 
 const PORT = Number(process.env.PORT) || 5000;
 
+validateProductionEnv();
 await connectDatabase();
 
 const server = app.listen(PORT, () => {

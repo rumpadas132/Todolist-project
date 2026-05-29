@@ -13,6 +13,7 @@ services:
       - key: NODE_VERSION
         value: 20
       - key: MONGODB_URI
+        # Required: set this in Render to your MongoDB Atlas connection string.
         sync: false
       - key: JWT_SECRET
         generateValue: true

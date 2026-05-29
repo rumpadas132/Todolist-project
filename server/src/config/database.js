@@ -15,7 +15,9 @@ export async function connectDatabase() {
 
   if (!uri) {
     if (process.env.NODE_ENV === 'production') {
-      console.error('MONGODB_URI is required in production.');
+      console.error(
+        'MONGODB_URI is required in production. Set it in Render > Environment.'
+      );
       process.exit(1);
     }
 

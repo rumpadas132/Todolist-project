@@ -75,6 +75,17 @@ MONGODB_URI=mongodb+srv://USER:PASSWORD@CLUSTER.mongodb.net/taskflow?retryWrites
 
 The Blueprint wires the frontend URL into backend CORS and the backend URL into the Vite build.
 
+If you created the API manually instead of using the Blueprint, add these environment
+variables to the API service in **Render > Environment**:
+
+```env
+NODE_ENV=production
+MONGODB_URI=mongodb+srv://USER:PASSWORD@CLUSTER.mongodb.net/taskflow?retryWrites=true&w=majority
+JWT_SECRET=replace_with_a_long_random_secret
+JWT_EXPIRES_IN=7d
+CLIENT_ORIGIN=https://your-frontend-service.onrender.com
+```
+
 ## Architecture
 
 - **`client/`** — React app, Tailwind, React Router, Axios, Zustand, protected routes, dashboard UI.
