@@ -57,6 +57,24 @@ VITE_API_URL=https://your-api-domain.com/api
 - **Local / Docker:** set `MONGODB_URI` in `server/.env` (e.g. `mongodb://127.0.0.1:27017/taskflow`).
 - **Atlas:** paste your SRV connection string as `MONGODB_URI`.
 
+## Deploy on Render
+
+This repo includes a **`render.yaml`** Blueprint for:
+
+- **`todolist-web`**: React/Vite static site
+- **`todolist-api`**: Express API service
+
+In Render, create a new **Blueprint** from this GitHub repository and select `render.yaml`.
+Render will generate `JWT_SECRET` automatically and prompt for `MONGODB_URI`.
+
+Use a production MongoDB connection string, such as MongoDB Atlas:
+
+```env
+MONGODB_URI=mongodb+srv://USER:PASSWORD@CLUSTER.mongodb.net/taskflow?retryWrites=true&w=majority
+```
+
+The Blueprint wires the frontend URL into backend CORS and the backend URL into the Vite build.
+
 ## Architecture
 
 - **`client/`** — React app, Tailwind, React Router, Axios, Zustand, protected routes, dashboard UI.
