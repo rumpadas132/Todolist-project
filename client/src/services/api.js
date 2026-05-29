@@ -1,10 +1,16 @@
 import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
 
+const apiUrl = import.meta.env.VITE_API_URL?.trim();
+const apiOrigin = import.meta.env.VITE_API_ORIGIN?.trim();
+
 /**
- * Base URL: use VITE_API_URL in production; in dev, `/api` uses Vite proxy to the backend.
+ * Base URL:
+ * - VITE_API_URL can point directly to the API path, e.g. https://api.example.com/api
+ * - VITE_API_ORIGIN can point to the API origin, e.g. https://api.example.com
+ * - local dev falls back to Vite's /api proxy
  */
-const baseURL = import.meta.env.VITE_API_URL?.trim() || '/api';
+const baseURL = apiUrl || (apiOrigin ? `${apiOrigin.replace(/\/$/, '')}/api` : '/api');
 
 export const api = axios.create({
   baseURL,
